@@ -12,12 +12,12 @@ conn = pyodbc.connect(
 cursor = conn.cursor()
 
 # Creating the Schema
-cursor.execute("CREATE SCHEMA ingestion")
+cursor.execute("CREATE SCHEMA transformation")
 
 # Creating the Tables
 ## erp_customer table (CUST_AZ12.csv)
 cursor.execute("""
-    CREATE TABLE ingestion.erp_customer (
+    CREATE TABLE transformation.erp_customer (
         ID NVARCHAR(50),
         date_of_birth NVARCHAR(20),
         gender NVARCHAR(10)
@@ -26,7 +26,7 @@ cursor.execute("""
 
 ## erp_location table (LOC_A101.csv)
 cursor.execute("""
-    CREATE TABLE ingestion.erp_location (
+    CREATE TABLE transformation.erp_location (
         ID NVARCHAR(50),
         country NVARCHAR(50)
     )
@@ -34,7 +34,7 @@ cursor.execute("""
 
 ## erp_product_category table (PX_CAT_G1V2.csv)
 cursor.execute("""
-    CREATE TABLE ingestion.erp_product_category (
+    CREATE TABLE transformation.erp_product_category (
         ID NVARCHAR(10),
         category NVARCHAR(50),
         subcategory NVARCHAR(75),
@@ -44,9 +44,9 @@ cursor.execute("""
 
 ## crm_customer table (cust_info.csv)
 cursor.execute("""
-    CREATE TABLE ingestion.crm_customer (
+    CREATE TABLE transformation.crm_customer (
         ID NVARCHAR(10),
-        costumer_key NVARCHAR(50),
+        customer_key NVARCHAR(50),
         first_name NVARCHAR(50),
         last_name NVARCHAR(50),
         marital_status NVARCHAR(5),
@@ -57,7 +57,7 @@ cursor.execute("""
 
 ## crm_product table (prd_info.csv)
 cursor.execute("""
-    CREATE TABLE ingestion.crm_product (
+    CREATE TABLE transformation.crm_product (
         ID NVARCHAR(5),
         product_key NVARCHAR(50),
         product_name NVARCHAR(100),      
@@ -70,7 +70,7 @@ cursor.execute("""
 
 ## crm_sales table (sales_details.csv)
 cursor.execute("""
-    CREATE TABLE ingestion.crm_sales (
+    CREATE TABLE transformation.crm_sales (
         ID NVARCHAR(50),
         product_key NVARCHAR(50),
         customer_id NVARCHAR(50),
@@ -78,7 +78,8 @@ cursor.execute("""
         shipping_date NVARCHAR(50),
         due_date NVARCHAR(50),
         sale_amount NVARCHAR(50),
-        quantity NVARCHAR(50)
+        quantity NVARCHAR(50),
+        price NVARCHAR(20)
     )
     """)
 
