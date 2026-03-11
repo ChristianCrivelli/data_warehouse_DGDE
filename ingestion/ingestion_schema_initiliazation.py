@@ -45,12 +45,12 @@ cursor.execute("""
 ## crm_customer table (cust_info.csv)
 cursor.execute("""
     CREATE TABLE ingestion.crm_customer (
-        ID NVARCHAR(10),
+        ID NVARCHAR(50),
         customer_key NVARCHAR(50),
         first_name NVARCHAR(50),
         last_name NVARCHAR(50),
-        marital_status NVARCHAR(5),
-        gender NVARCHAR(5),
+        marital_status NVARCHAR(10),
+        gender NVARCHAR(10),
         date_of_creation NVARCHAR(50)
     )
     """)

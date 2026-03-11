@@ -45,12 +45,12 @@ cursor.execute("""
 ## crm_customer table (cust_info.csv)
 cursor.execute("""
     CREATE TABLE transformation.crm_customer (
-        ID NVARCHAR(10),
+        ID NVARCHAR(50),
         customer_key NVARCHAR(50),
         first_name NVARCHAR(50),
         last_name NVARCHAR(50),
-        marital_status NVARCHAR(5),
-        gender NVARCHAR(5),
+        marital_status NVARCHAR(50),
+        gender NVARCHAR(50),
         date_of_creation NVARCHAR(50)
     )
     """)
@@ -82,6 +82,9 @@ cursor.execute("""
         price NVARCHAR(20)
     )
     """)
+
+#Sanity Check 
+print("Schema Initiated Succefully!")
 
 # Closing the Connection
 cursor.close()
