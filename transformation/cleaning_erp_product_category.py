@@ -15,7 +15,12 @@ cursor = conn.cursor()
 # Loading the CRM Sales Table
 df = pd.read_sql_query(sql="SELECT * FROM ingestion.erp_product_category", con=conn)
 
-## Didn't find anything worth cleaning so stopped here for now !!!!!!!!!!!!!!
+# Stripping "requires_maintenance"
+df["requires_maintenance"] = df['requires_maintenance'].str.strip()
+
+## Making "requires_maintenance" to be a boolean
+df["requires_maintenance"] = df["requires_maintenance"].replace("YES", 1)
+df["requires_maintenance"] = df["requires_maintenance"].replace("NO", 0)
 
 # Logic to send the data back
 columns = ", ".join(df.columns)

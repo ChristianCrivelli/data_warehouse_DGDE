@@ -15,12 +15,19 @@ cursor = conn.cursor()
 # Loading the ERP Customer Table
 df = pd.read_sql_query(sql="SELECT * FROM ingestion.erp_customer", con=conn)
 
-# Correct "NAS" in IDs
+# cleaning the Table
+## Correct "NAS" in IDs
+### Correct it to what?
 
-# Correct F's and M's in Gender and fill in Missing
+## Strip Gender Column
+df["gender"] = df['gender'].str.strip()
+
+## Correct F's and M's in Gender and fill in Missing
 df["gender"] = df["gender"].replace("M", "Male")
 df["gender"] = df["gender"].replace("F", "Female")
 df["gender"] = df["gender"].replace("", None).fillna("N/A")
+
+## Correct dates that do not exist (those born ahead of current date) with NULL
 
 # Logic to send the data back
 columns = ", ".join(df.columns)

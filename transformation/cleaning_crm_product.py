@@ -57,7 +57,7 @@ df["product_end_date"] = (
 
 df = df.sort_values(by=["ID"]).copy()
 df["product_end_date"] = df["product_end_date"].dt.strftime("%Y-%m-%d")
-df["product_end_date"] = df["product_end_date"].fillna("NAT")
+df["product_end_date"] = df["product_end_date"].fillna(pd.NaT)
 
 # Logic to send the data back
 df.to_sql(name='crm_product', 

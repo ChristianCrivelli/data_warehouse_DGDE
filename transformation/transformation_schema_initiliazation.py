@@ -18,40 +18,40 @@ cursor.execute("CREATE SCHEMA transformation")
 ## erp_customer table (CUST_AZ12.csv)
 cursor.execute("""
     CREATE TABLE transformation.erp_customer (
-        ID NVARCHAR(50),
-        date_of_birth NVARCHAR(20),
-        gender NVARCHAR(10)
+        ID NVARCHAR(15),
+        date_of_birth DATE,
+        gender VARCHAR(6)
     )
     """)
 
 ## erp_location table (LOC_A101.csv)
 cursor.execute("""
     CREATE TABLE transformation.erp_location (
-        ID NVARCHAR(50),
-        country NVARCHAR(50)
+        ID NVARCHAR(10),
+        country VARCHAR(50)
     )
     """)
 
 ## erp_product_category table (PX_CAT_G1V2.csv)
 cursor.execute("""
     CREATE TABLE transformation.erp_product_category (
-        ID NVARCHAR(10),
-        category NVARCHAR(50),
-        subcategory NVARCHAR(75),
-        requires_maintence NVARCHAR(50)
+        ID NVARCHAR(5),
+        category VARCHAR(50),
+        subcategory VARCHAR(75),
+        requires_maintence BIT
     )
     """)
 
 ## crm_customer table (cust_info.csv)
 cursor.execute("""
     CREATE TABLE transformation.crm_customer (
-        ID NVARCHAR(50),
-        customer_key NVARCHAR(50),
-        first_name NVARCHAR(50),
-        last_name NVARCHAR(50),
-        marital_status NVARCHAR(50),
-        gender NVARCHAR(50),
-        date_of_creation NVARCHAR(50)
+        ID INT(5),
+        customer_key NVARCHAR(10),
+        first_name VARCHAR(50),
+        last_name VARCHAR(50),
+        marital_status VARCHAR(7),
+        gender VARCHAR(6),
+        date_of_creation DATE
     )
     """)
 
@@ -59,27 +59,28 @@ cursor.execute("""
 cursor.execute("""
     CREATE TABLE transformation.crm_product (
         ID NVARCHAR(5),
-        product_key NVARCHAR(50),
+        product_key NVARCHAR(15),
+        product_category NVARCHAR(5),
         product_name NVARCHAR(100),      
-        product_cost NVARCHAR(5),
-        product_line NVARCHAR(5),
-        product_start_date NVARCHAR(20),
-        product_end_date NVARCHAR(20)
+        product_cost INT,
+        product_line VARCHAR(8),
+        product_start_date DATE,
+        product_end_date DATE
     )
     """)
 
 ## crm_sales table (sales_details.csv)
 cursor.execute("""
     CREATE TABLE transformation.crm_sales (
-        ID NVARCHAR(50),
-        product_key NVARCHAR(50),
-        customer_id NVARCHAR(50),
-        order_date NVARCHAR(50),
-        shipping_date NVARCHAR(50),
-        due_date NVARCHAR(50),
-        sale_amount NVARCHAR(50),
-        quantity NVARCHAR(50),
-        price NVARCHAR(20)
+        ID NVARCHAR(10),
+        product_key NVARCHAR(10),
+        customer_id INT,
+        order_date DATE,
+        shipping_date DATE,
+        due_date DATE,
+        sale_amount INT,
+        quantity INT,
+        price INT
     )
     """)
 

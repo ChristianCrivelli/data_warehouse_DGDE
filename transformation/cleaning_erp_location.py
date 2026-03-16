@@ -17,6 +17,9 @@ cursor = conn.cursor()
 df = pd.read_sql_query(sql="SELECT * FROM ingestion.erp_location", con=conn)
 
 # Correcting Country naming convention 
+## Stripping
+df["country"] = df['country'].str.strip()
+
 ## Note: DE is Germany
 df["country"] = df["country"].replace("DE", "Germany")
 
@@ -24,7 +27,9 @@ df["country"] = df["country"].replace("US", "United States of America")
 df["country"] = df["country"].replace("USA", "United States of America")
 df["country"] = df["country"].replace("United States", "United States of America")
 
-# What to do with NULL?
+## Cleaning Missing Values
+df["country"] = df["country"].replace("", None).fillna("N/A")
+
 
 # Logic to send the data back
 columns = ", ".join(df.columns)
