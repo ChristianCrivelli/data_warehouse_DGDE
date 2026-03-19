@@ -30,7 +30,6 @@ df["country"] = df["country"].replace("United States", "United States of America
 ## Cleaning Missing Values
 df["country"] = df["country"].replace("", None).fillna("N/A")
 
-
 # Logic to send the data back
 columns = ", ".join(df.columns)
 values_placeholders = ", ".join(["?"] * len(df.columns))

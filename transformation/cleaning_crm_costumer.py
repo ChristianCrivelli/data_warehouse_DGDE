@@ -40,10 +40,12 @@ columns = ", ".join(df.columns)
 values_placeholders = ", ".join(["?"] * len(df.columns))
 insert_sql = f"INSERT INTO transformation.crm_customer ({columns}) VALUES ({values_placeholders})"
 
-cursor = conn.cursor()
 cursor.fast_executemany = True
-params = [tuple(x) for x in df.values]
 
+# Convert Pandas NA/NAType objects to standard Python None for pyodbc compatibility
+df_to_insert = df.astype(object).where(pd.notnull(df), None)
+
+params = [tuple(x) for x in df_to_insert.values]
 try:
     cursor.executemany(insert_sql, params)
     conn.commit()

@@ -27,7 +27,7 @@ cursor.execute("""
 ## erp_location table (LOC_A101.csv)
 cursor.execute("""
     CREATE TABLE transformation.erp_location (
-        ID NVARCHAR(10),
+        ID NVARCHAR(15),
         country VARCHAR(50)
     )
     """)
@@ -38,14 +38,14 @@ cursor.execute("""
         ID NVARCHAR(5),
         category VARCHAR(50),
         subcategory VARCHAR(75),
-        requires_maintence BIT
+        requires_maintenance BIT
     )
     """)
 
 ## crm_customer table (cust_info.csv)
 cursor.execute("""
     CREATE TABLE transformation.crm_customer (
-        ID INT(5),
+        ID INT,
         customer_key NVARCHAR(10),
         first_name VARCHAR(50),
         last_name VARCHAR(50),

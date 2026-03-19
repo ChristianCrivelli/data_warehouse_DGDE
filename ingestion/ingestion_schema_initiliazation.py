@@ -38,7 +38,7 @@ cursor.execute("""
         ID NVARCHAR(10),
         category NVARCHAR(50),
         subcategory NVARCHAR(75),
-        requires_maintence NVARCHAR(50)
+        requires_maintenance NVARCHAR(50)
     )
     """)
 
